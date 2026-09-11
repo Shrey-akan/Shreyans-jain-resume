@@ -48,10 +48,10 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="rounded-lg border border-border bg-card p-6 md:p-8 space-y-5">
+    <form onSubmit={onSubmit} className="relative space-y-5 overflow-hidden rounded-lg border border-border bg-card p-4 sm:p-6 md:p-8">
       <div>
         <p className="font-mono text-xs uppercase tracking-widest text-primary mb-2">Write to me</p>
-        <h2 className="font-display text-3xl">Send a message</h2>
+        <h2 className="font-display text-2xl sm:text-3xl">Send a message</h2>
         <p className="mt-2 text-sm text-muted-foreground">
           Jobs, collaborations, or a quick question — this lands in my inbox.
         </p>

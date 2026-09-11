@@ -24,9 +24,9 @@ export const Route = createFileRoute("/about")({
 
 function About() {
   return (
-    <div className="mx-auto max-w-4xl px-6 py-20 md:py-32">
+    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-20 md:py-32">
       <p className="font-mono text-xs uppercase tracking-widest text-primary mb-6">Profile</p>
-      <h1 className="font-display text-5xl md:text-7xl text-balance leading-[1]">
+      <h1 className="font-display text-4xl leading-[1] text-balance sm:text-5xl md:text-7xl">
         Professional summary
       </h1>
       <ProfileNav className="mt-8" />

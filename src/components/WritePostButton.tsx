@@ -4,7 +4,7 @@ import { useAuth } from "@/components/AuthProvider";
 import { cn } from "@/lib/utils";
 
 const styles =
-  "inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition";
+  "inline-flex items-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary/90 sm:px-4";
 
 export function WritePostButton({ className }: { className?: string }) {
   const { user, ready } = useAuth();

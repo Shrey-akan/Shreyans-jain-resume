@@ -42,13 +42,13 @@ function LoginPage() {
   }, [ready, redirect, navigate]);
 
   if (!ready || hadSession.current) {
-    return <div className="mx-auto max-w-md px-6 py-24 text-muted-foreground">Checking your account…</div>;
+    return <div className="mx-auto max-w-md px-4 py-24 text-muted-foreground sm:px-6">Checking your account…</div>;
   }
 
   return (
-    <div className="mx-auto max-w-md px-6 py-20 md:py-28">
+    <div className="mx-auto max-w-md px-4 py-14 sm:px-6 sm:py-20 md:py-28">
       <p className="font-mono text-xs uppercase tracking-widest text-primary mb-4">Account</p>
-      <h1 className="font-display text-4xl md:text-5xl mb-3">Log in or join</h1>
+      <h1 className="mb-3 font-display text-3xl sm:text-4xl md:text-5xl">Log in or join</h1>
       <p className="text-muted-foreground mb-8">
         Create an account or log in with the same email to write posts, like, and comment.
       </p>

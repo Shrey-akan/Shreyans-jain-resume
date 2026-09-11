@@ -73,7 +73,7 @@ export function FeedbackProvider({ children }: { children: ReactNode }) {
     <FeedbackContext.Provider value={value}>
       {children}
       <Dialog open={Boolean(success)} onOpenChange={(open) => !open && success?.close()}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="w-[calc(100%-2rem)] sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="font-display text-2xl">{success?.title}</DialogTitle>
             <DialogDescription className="text-base leading-relaxed">{success?.description}</DialogDescription>
@@ -86,7 +86,7 @@ export function FeedbackProvider({ children }: { children: ReactNode }) {
         </DialogContent>
       </Dialog>
       <AlertDialog open={Boolean(confirm)} onOpenChange={(open) => !open && confirm?.resolve(false)}>
-        <AlertDialogContent>
+        <AlertDialogContent className="w-[calc(100%-2rem)]">
           <AlertDialogHeader>
             <AlertDialogTitle>{confirm?.title}</AlertDialogTitle>
             <AlertDialogDescription>{confirm?.description}</AlertDialogDescription>

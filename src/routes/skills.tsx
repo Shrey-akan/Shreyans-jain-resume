@@ -54,9 +54,9 @@ const groups = [
 
 function Skills() {
   return (
-    <div className="mx-auto max-w-5xl px-6 py-20 md:py-32">
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-20 md:py-32">
       <p className="font-mono text-xs uppercase tracking-widest text-primary mb-6">Skills</p>
-      <h1 className="font-display text-5xl md:text-7xl text-balance leading-[1] mb-6">
+      <h1 className="mb-6 font-display text-4xl leading-[1] text-balance sm:text-5xl md:text-7xl">
         Technical skills
       </h1>
       <p className="text-muted-foreground max-w-2xl mb-8 leading-relaxed">
@@ -67,7 +67,7 @@ function Skills() {
 
       <div className="grid md:grid-cols-2 gap-6">
         {groups.map((g) => (
-          <div key={g.title} className="rounded-lg border border-border bg-card p-6">
+          <div key={g.title} className="rounded-lg border border-border bg-card p-5 sm:p-6">
             <h2 className="font-display text-xl mb-4">{g.title}</h2>
             <div className="flex flex-wrap gap-2">
               {g.items.map((i) => (

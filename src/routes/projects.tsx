@@ -117,9 +117,9 @@ const projects = [
 
 function Projects() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-20 md:py-32">
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-20 md:py-32">
       <p className="font-mono text-xs uppercase tracking-widest text-primary mb-6">Projects</p>
-      <h1 className="font-display text-5xl md:text-7xl text-balance leading-[1] mb-6">
+      <h1 className="mb-6 font-display text-4xl leading-[1] text-balance sm:text-5xl md:text-7xl">
         Selected projects
       </h1>
       <p className="text-muted-foreground max-w-2xl mb-8 leading-relaxed">
@@ -132,14 +132,14 @@ function Projects() {
         {projects.map((p) => (
           <article
             key={p.n}
-            className="group relative rounded-lg border border-border bg-card p-8 md:p-10 hover:border-primary/60 transition overflow-hidden"
+            className="group relative overflow-hidden rounded-lg border border-border bg-card p-5 transition hover:border-primary/60 sm:p-8 md:p-10"
           >
             <div className="relative grid md:grid-cols-12 gap-8">
               <div className="md:col-span-4">
                 <p className="font-mono text-xs text-primary mb-2">
                   {p.n} — {p.tag}
                 </p>
-                <h2 className="font-display text-3xl md:text-4xl mb-3">{p.title}</h2>
+                <h2 className="mb-3 font-display text-2xl sm:text-3xl md:text-4xl">{p.title}</h2>
                 {p.href && (
                   <a
                     href={p.href}

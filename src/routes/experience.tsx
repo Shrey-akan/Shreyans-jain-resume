@@ -89,9 +89,9 @@ const jobs = [
 
 function Experience() {
   return (
-    <div className="mx-auto max-w-5xl px-6 py-20 md:py-32">
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-20 md:py-32">
       <p className="font-mono text-xs uppercase tracking-widest text-primary mb-6">Experience</p>
-      <h1 className="font-display text-5xl md:text-7xl text-balance leading-[1] mb-6">
+      <h1 className="mb-6 font-display text-4xl leading-[1] text-balance sm:text-5xl md:text-7xl">
         Work history
       </h1>
       <p className="text-muted-foreground max-w-2xl mb-8 leading-relaxed">
@@ -102,8 +102,8 @@ function Experience() {
 
       <ol className="relative border-l border-border ml-3">
         {jobs.map((job, i) => (
-          <li key={job.company + job.period} className="mb-16 ml-8 relative">
-            <span className="absolute -left-[42px] top-1.5 flex items-center justify-center size-7 rounded-full bg-background border-2 border-primary font-mono text-xs text-primary">
+          <li key={job.company + job.period} className="relative mb-12 ml-6 sm:mb-16 sm:ml-8">
+            <span className="absolute -left-[34px] top-1.5 flex size-7 items-center justify-center rounded-full border-2 border-primary bg-background font-mono text-xs text-primary sm:-left-[42px]">
               {String(jobs.length - i).padStart(2, "0")}
             </span>
             <div className="flex flex-wrap items-baseline justify-between gap-2 mb-1">

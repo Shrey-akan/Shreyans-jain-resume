@@ -10,8 +10,8 @@ import {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border/60 mt-32">
-      <div className="mx-auto max-w-6xl px-6 py-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="mt-16 border-t border-border/60 sm:mt-24 md:mt-32">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-10 sm:grid-cols-2 sm:px-6 sm:py-12 lg:grid-cols-4">
         <div>
           <p className="font-display text-2xl">Shreyans Jain</p>
           <p className="font-mono text-xs text-muted-foreground mt-2">
@@ -58,7 +58,7 @@ export function SiteFooter() {
           <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-1 font-sans">
             Connect
           </p>
-          <a href={`mailto:${PROFILE.email}`} className="text-muted-foreground hover:text-primary">
+          <a href={`mailto:${PROFILE.email}`} className="break-all text-muted-foreground hover:text-primary">
             {PROFILE.email}
           </a>
           <a href={PROFILE.githubHref} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">
@@ -78,7 +78,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-border/60">
-        <div className="mx-auto max-w-6xl px-6 py-4 flex justify-between text-xs font-mono text-muted-foreground">
+        <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-4 text-xs font-mono text-muted-foreground sm:flex-row sm:justify-between sm:px-6">
           <span>© {new Date().getFullYear()} Shreyans Jain</span>
           <span>Bengaluru, India</span>
         </div>

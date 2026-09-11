@@ -155,12 +155,12 @@ function Studio() {
   const editingLabel = form.id ? "Editing existing post" : "New admin post";
 
   if (!ready || !user) {
-    return <div className="mx-auto max-w-md px-6 py-24 text-muted-foreground">Checking admin access…</div>;
+    return <div className="mx-auto max-w-md px-4 py-24 text-muted-foreground sm:px-6">Checking admin access…</div>;
   }
 
   if (!isAdmin) {
     return (
-      <div className="mx-auto max-w-md px-6 py-24">
+      <div className="mx-auto max-w-md px-4 py-24 sm:px-6">
         <p className="font-mono text-xs uppercase tracking-widest text-primary mb-4">Admin</p>
         <h1 className="font-display text-4xl mb-4">Admin only</h1>
         <p className="text-sm text-muted-foreground mb-6">
@@ -176,12 +176,12 @@ function Studio() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 md:py-24">
       <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
         <div>
           <p className="font-mono text-xs uppercase tracking-widest text-primary mb-3">Admin</p>
-          <h1 className="font-display text-4xl md:text-5xl">Users and blogs</h1>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl">Users and blogs</h1>
+          <p className="mt-2 break-all text-sm text-muted-foreground">
             Signed in as {user.email}. Approve a post to make it visible on the public blog.
           </p>
         </div>
@@ -198,7 +198,7 @@ function Studio() {
       </div>
 
       <Tabs defaultValue="blogs">
-        <TabsList>
+        <TabsList className="flex h-auto w-full flex-wrap justify-start gap-1">
           <TabsTrigger value="blogs">Blogs ({posts.length})</TabsTrigger>
           <TabsTrigger value="users">Users ({users.length})</TabsTrigger>
           <TabsTrigger value="write">Write</TabsTrigger>
@@ -215,7 +215,7 @@ function Studio() {
             </div>
           ) : (
             posts.map((post) => (
-              <article key={post.id} className="rounded-lg border border-border bg-card p-6 space-y-4">
+              <article key={post.id} className="space-y-4 rounded-lg border border-border bg-card p-4 sm:p-6">
                 <div className="flex flex-wrap justify-between gap-3">
                   <div>
                     <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
@@ -224,7 +224,7 @@ function Studio() {
                       {post.status === "approved" ? " · Live" : " · Hidden from blog"}
                     </p>
                     <h2 className="font-display text-2xl mt-1">{post.title}</h2>
-                    <p className="mt-1 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                    <p className="mt-1 break-words font-mono text-xs uppercase tracking-widest text-muted-foreground">
                       {post.authorName}
                       {post.authorEmail ? ` · ${post.authorEmail}` : ""} · {formatBlogDate(post.updatedAt)}
                     </p>
@@ -270,7 +270,7 @@ function Studio() {
         </TabsContent>
 
         <TabsContent value="write" className="mt-8 grid lg:grid-cols-[minmax(0,1fr)_20rem] gap-8">
-          <form onSubmit={onSave} className="space-y-5 rounded-lg border border-border bg-card p-6 md:p-8">
+          <form onSubmit={onSave} className="min-w-0 space-y-5 rounded-lg border border-border bg-card p-4 sm:p-6 md:p-8">
             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">{editingLabel}</p>
             <BlogEditorFields form={form} setForm={setForm} />
             <div className="flex flex-wrap gap-8">

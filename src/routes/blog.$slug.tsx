@@ -36,7 +36,7 @@ function BlogPostPage() {
   }, [post.slug]);
 
   return (
-    <article className="mx-auto max-w-3xl px-6 py-20 md:py-28">
+    <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-20 md:py-28">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <Link to="/blog" className="font-mono text-xs uppercase tracking-widest text-muted-foreground hover:text-primary">
           ← All posts
@@ -48,7 +48,7 @@ function BlogPostPage() {
       ) : (
         <p className="mt-8 font-mono text-xs uppercase tracking-widest text-primary">Writing</p>
       )}
-      <h1 className="mt-4 font-display text-4xl md:text-6xl leading-[1.05] text-balance">{post.title}</h1>
+      <h1 className="mt-4 font-display text-3xl leading-[1.05] text-balance sm:text-4xl md:text-6xl">{post.title}</h1>
       <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <UserAvatar name={post.authorName} className="h-10 w-10 text-sm" />

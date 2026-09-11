@@ -12,8 +12,8 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-display font-semibold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h1 className="font-display text-5xl font-semibold text-foreground sm:text-7xl">404</h1>
+        <h2 className="mt-4 text-lg font-semibold text-foreground sm:text-xl">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
           The page you're looking for doesn't exist or has been moved.
         </p>
@@ -111,7 +111,7 @@ function RootComponent() {
     <ThemeProvider>
       <FeedbackProvider>
         <AuthProvider>
-          <div className="min-h-screen flex flex-col bg-background text-foreground">
+          <div className="min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden">
             <SiteHeader />
             <main className="flex-1">
               <Outlet />

@@ -101,14 +101,14 @@ function WritePage() {
   }
 
   if (!ready) {
-    return <div className="mx-auto max-w-md px-6 py-24 text-muted-foreground">Checking your account…</div>;
+    return <div className="mx-auto max-w-md px-4 py-24 text-muted-foreground sm:px-6">Checking your account…</div>;
   }
 
   if (!user) {
     return (
-      <div className="mx-auto max-w-md px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-md px-4 py-14 sm:px-6 sm:py-20 md:py-28">
         <p className="font-mono text-xs uppercase tracking-widest text-primary mb-4">Write</p>
-        <h1 className="font-display text-4xl md:text-5xl mb-3">Sign in to write</h1>
+        <h1 className="mb-3 font-display text-3xl sm:text-4xl md:text-5xl">Sign in to write</h1>
         <p className="text-muted-foreground mb-8">
           Create an account or log in with the same email. Posts go live after admin approval.
         </p>
@@ -118,11 +118,11 @@ function WritePage() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 md:py-24">
       <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
         <div>
           <p className="font-mono text-xs uppercase tracking-widest text-primary mb-3">Write</p>
-          <h1 className="font-display text-4xl md:text-5xl">Hello, {user.name}</h1>
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl">Hello, {user.name}</h1>
           <p className="mt-2 text-muted-foreground">
             Submit a post with text and an image. Admin reviews it before it appears on the blog.
           </p>
@@ -138,7 +138,7 @@ function WritePage() {
       </div>
 
       <div className="grid lg:grid-cols-[minmax(0,1fr)_20rem] gap-8">
-        <form onSubmit={onSave} className="space-y-5 rounded-lg border border-border bg-card p-6 md:p-8">
+        <form onSubmit={onSave} className="min-w-0 space-y-5 rounded-lg border border-border bg-card p-4 sm:p-6 md:p-8">
           <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
             {form.id ? "Editing your post" : "New post"}
           </p>

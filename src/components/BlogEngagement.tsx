@@ -113,7 +113,7 @@ export function BlogEngagement({
       </div>
 
       <div className="mt-10">
-        <h2 className="font-display text-3xl">Comments</h2>
+        <h2 className="font-display text-2xl sm:text-3xl">Comments</h2>
         {!user ? (
           <p className="mt-3 text-sm text-muted-foreground">
             <a href={loginHref} className="text-foreground underline-offset-2 hover:underline">
@@ -141,12 +141,12 @@ export function BlogEngagement({
             <p className="text-sm text-muted-foreground">No comments yet. Start the discussion.</p>
           ) : (
             comments.map((comment) => (
-              <article key={comment.id} className="rounded-lg border border-border bg-card p-5">
+              <article key={comment.id} className="rounded-lg border border-border bg-card p-4 sm:p-5">
                 <div className="flex items-start justify-between gap-3">
-                  <div className="flex items-center gap-3">
+                  <div className="flex min-w-0 items-center gap-3">
                     <UserAvatar name={comment.authorName} />
-                    <div>
-                      <p className="text-sm font-medium">{comment.authorName}</p>
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-medium">{comment.authorName}</p>
                       <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
                         {formatBlogTime(comment.createdAt)}
                       </p>
@@ -162,7 +162,7 @@ export function BlogEngagement({
                     </button>
                   ) : null}
                 </div>
-                <p className="mt-3 whitespace-pre-wrap text-muted-foreground leading-relaxed">{comment.body}</p>
+                <p className="mt-3 break-words whitespace-pre-wrap leading-relaxed text-muted-foreground">{comment.body}</p>
               </article>
             ))
           )}

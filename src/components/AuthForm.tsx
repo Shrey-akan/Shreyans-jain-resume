@@ -85,7 +85,7 @@ export function AuthForm({
           role="tab"
           aria-selected={isRegister}
           className={cn(
-            "relative z-10 cursor-pointer rounded-md px-3 py-2 text-sm font-medium transition-colors",
+            "relative z-10 cursor-pointer rounded-md px-2 py-2 text-xs font-medium transition-colors sm:px-3 sm:text-sm",
             isRegister ? "bg-background text-foreground shadow" : "text-muted-foreground hover:text-foreground",
           )}
           onClick={() => setTab("register")}
@@ -97,7 +97,7 @@ export function AuthForm({
           role="tab"
           aria-selected={!isRegister}
           className={cn(
-            "relative z-10 cursor-pointer rounded-md px-3 py-2 text-sm font-medium transition-colors",
+            "relative z-10 cursor-pointer rounded-md px-2 py-2 text-xs font-medium transition-colors sm:px-3 sm:text-sm",
             !isRegister ? "bg-background text-foreground shadow" : "text-muted-foreground hover:text-foreground",
           )}
           onClick={() => setTab("login")}
@@ -107,7 +107,7 @@ export function AuthForm({
       </div>
 
       {isRegister ? (
-        <form onSubmit={onRegister} className="mt-6 space-y-4 rounded-lg border border-border bg-card p-6">
+        <form onSubmit={onRegister} className="mt-6 space-y-4 rounded-lg border border-border bg-card p-4 sm:p-6">
           <div className="space-y-2">
             <Label htmlFor="reg-name">Name</Label>
             <Input id="reg-name" value={name} onChange={(event) => setName(event.target.value)} minLength={2} required />
@@ -151,7 +151,7 @@ export function AuthForm({
           </p>
         </form>
       ) : (
-        <form onSubmit={onLogin} className="mt-6 space-y-4 rounded-lg border border-border bg-card p-6">
+        <form onSubmit={onLogin} className="mt-6 space-y-4 rounded-lg border border-border bg-card p-4 sm:p-6">
           <div className="space-y-2">
             <Label htmlFor="login-email">Email</Label>
             <Input

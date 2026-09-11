@@ -10,9 +10,9 @@ type Variant = "primary" | "outline" | "header";
 
 const styles: Record<Variant, string> = {
   primary:
-    "inline-flex items-center gap-2 px-5 py-3 rounded-md bg-primary text-primary-foreground font-medium hover:opacity-90 transition",
+    "inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 font-medium text-primary-foreground transition hover:opacity-90 sm:w-auto",
   outline:
-    "inline-flex items-center gap-2 px-5 py-3 rounded-md border border-border hover:border-primary transition",
+    "inline-flex w-full items-center justify-center gap-2 rounded-md border border-border px-5 py-3 transition hover:border-primary sm:w-auto",
   header:
     "hidden sm:inline-flex items-center gap-2 text-xs font-mono px-3 py-2 rounded-md border border-border hover:border-primary hover:text-primary transition-colors",
 };

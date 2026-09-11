@@ -31,9 +31,9 @@ const channels = [
 
 function Contact() {
   return (
-    <div className="mx-auto max-w-4xl px-6 py-20 md:py-32">
+    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-20 md:py-32">
       <p className="font-mono text-xs uppercase tracking-widest text-primary mb-6">Contact</p>
-      <h1 className="font-display text-5xl md:text-7xl text-balance leading-[1]">
+      <h1 className="font-display text-4xl leading-[1] text-balance sm:text-5xl md:text-7xl">
         Get in touch
       </h1>
 
@@ -53,15 +53,15 @@ function Contact() {
             href={c.href}
             target={c.href.startsWith("http") ? "_blank" : undefined}
             rel="noreferrer"
-            className="group rounded-lg border border-border bg-card p-6 hover:border-primary/60 transition flex items-center justify-between"
+            className="group flex min-w-0 items-center justify-between gap-3 rounded-lg border border-border bg-card p-4 transition hover:border-primary/60 sm:p-6"
           >
-            <div>
+            <div className="min-w-0">
               <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-1">
                 {c.label}
               </p>
-              <p className="font-display text-lg group-hover:text-primary transition">{c.value}</p>
+              <p className="break-words font-display text-base group-hover:text-primary transition sm:text-lg">{c.value}</p>
             </div>
-            <span className="text-muted-foreground group-hover:text-primary transition">→</span>
+            <span className="shrink-0 text-muted-foreground group-hover:text-primary transition">→</span>
           </a>
         ))}
       </div>

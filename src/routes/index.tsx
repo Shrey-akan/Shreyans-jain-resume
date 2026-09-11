@@ -66,17 +66,17 @@ function Index() {
 
   return (
     <div className="grain">
-      <section className="mx-auto max-w-6xl px-6 pt-16 md:pt-24 pb-16">
+      <section className="mx-auto max-w-6xl px-4 pt-10 pb-12 sm:px-6 sm:pt-16 md:pt-24 md:pb-16">
         <div className="relative overflow-hidden rounded-xl border border-border bg-card">
           <div className="h-1.5 bg-primary" />
           <div className="absolute left-0 top-1.5 bottom-0 w-1 bg-primary/70" />
-          <div className="p-8 md:p-12">
+          <div className="p-5 sm:p-8 md:p-12">
             <div className="flex flex-wrap items-start justify-between gap-6">
               <div>
                 <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary mb-4">
                   Curriculum Vitae
                 </p>
-                <h1 className="font-display text-5xl md:text-7xl leading-[0.95]">Shreyans Jain</h1>
+                <h1 className="font-display text-4xl leading-[0.95] sm:text-5xl md:text-7xl">Shreyans Jain</h1>
                 <p className="mt-4 font-display text-xl md:text-2xl text-primary">
                   Senior Full Stack Engineer
                 </p>
@@ -108,16 +108,16 @@ function Index() {
               platform, and built the company product-analytics dashboard.
             </p>
 
-            <div className="mt-8 grid sm:grid-cols-2 gap-3 text-sm font-mono">
+            <div className="mt-8 grid gap-3 text-xs font-mono sm:grid-cols-2 sm:text-sm">
               <a
                 href={`mailto:${PROFILE.email}`}
-                className="rounded-md border border-border px-4 py-3 text-muted-foreground hover:text-primary hover:border-primary/60 transition"
+                className="rounded-md border border-border px-4 py-3 text-muted-foreground hover:text-primary hover:border-primary/60 transition break-all"
               >
                 {PROFILE.email}
               </a>
               <a
                 href={PROFILE.phoneHref}
-                className="rounded-md border border-border px-4 py-3 text-muted-foreground hover:text-primary hover:border-primary/60 transition"
+                className="rounded-md border border-border px-4 py-3 text-muted-foreground hover:text-primary hover:border-primary/60 transition break-all"
               >
                 {PROFILE.phone}
               </a>
@@ -125,7 +125,7 @@ function Index() {
                 href={PROFILE.linkedinHref}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-md border border-border px-4 py-3 text-muted-foreground hover:text-primary hover:border-primary/60 transition"
+                className="rounded-md border border-border px-4 py-3 text-muted-foreground hover:text-primary hover:border-primary/60 transition break-all"
               >
                 {PROFILE.linkedinLabel}
               </a>
@@ -133,7 +133,7 @@ function Index() {
                 href={PROFILE.githubHref}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-md border border-border px-4 py-3 text-muted-foreground hover:text-primary hover:border-primary/60 transition"
+                className="rounded-md border border-border px-4 py-3 text-muted-foreground hover:text-primary hover:border-primary/60 transition break-all"
               >
                 {PROFILE.githubLabel}
               </a>
@@ -143,7 +143,7 @@ function Index() {
       </section>
 
       <section className="border-y border-border/60 bg-surface/40">
-        <div className="mx-auto max-w-6xl px-6 py-6 flex flex-wrap items-center gap-x-8 gap-y-3">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-3 px-4 py-5 sm:gap-x-8 sm:px-6 sm:py-6">
           <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
             Core skills
           </span>
@@ -158,7 +158,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-20 grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <section className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-4 py-12 sm:gap-6 sm:px-6 sm:py-16 md:grid-cols-4 md:gap-8 md:py-20">
         {[
           { n: "5+", l: "Years of experience" },
           { n: "40K+", l: "Banknote downloads" },
@@ -166,7 +166,7 @@ function Index() {
           { n: "4.3+", l: "Store rating" },
         ].map((s) => (
           <div key={s.l} className="border-l-2 border-primary/60 pl-5">
-            <p className="font-display text-4xl md:text-5xl text-primary">{s.n}</p>
+            <p className="font-display text-3xl text-primary sm:text-4xl md:text-5xl">{s.n}</p>
             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mt-2">
               {s.l}
             </p>
@@ -174,8 +174,8 @@ function Index() {
         ))}
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="flex items-baseline justify-between mb-10">
+      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20 md:pb-24">
+        <div className="mb-8 flex flex-wrap items-baseline justify-between gap-3 sm:mb-10">
           <h2 className="font-display text-3xl md:text-4xl">Explore</h2>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -183,7 +183,7 @@ function Index() {
             <Link
               key={item.to}
               to={item.to}
-              className="rounded-lg border border-border bg-card p-6 hover:border-primary/60 transition group"
+              className="group rounded-lg border border-border bg-card p-5 transition hover:border-primary/60 sm:p-6"
             >
               <h3 className="font-display text-2xl group-hover:text-primary transition">{item.label}</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.hint}</p>
@@ -195,8 +195,8 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="flex items-baseline justify-between mb-10">
+      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20 md:pb-24">
+        <div className="mb-8 flex flex-wrap items-baseline justify-between gap-3 sm:mb-10">
           <h2 className="font-display text-3xl md:text-4xl">Selected work</h2>
           <Link
             to="/projects"
@@ -211,7 +211,7 @@ function Index() {
             <Link
               key={p.n}
               to="/projects"
-              className="block group rounded-lg border border-border bg-card p-8 hover:border-primary/60 transition"
+              className="group block rounded-lg border border-border bg-card p-5 transition hover:border-primary/60 sm:p-8"
             >
               <p className="font-mono text-xs uppercase tracking-widest text-primary mb-4">
                 {p.n}
@@ -231,8 +231,8 @@ function Index() {
       </section>
 
       {blogOfTheDay ? (
-        <section className="mx-auto max-w-6xl px-6 pb-24">
-          <div className="flex items-baseline justify-between mb-10">
+        <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20 md:pb-24">
+          <div className="mb-8 flex flex-wrap items-baseline justify-between gap-3 sm:mb-10">
             <h2 className="font-display text-3xl md:text-4xl">Blog of the day</h2>
             <Link to="/blog" className="font-mono text-xs text-muted-foreground hover:text-primary">
               All posts
@@ -243,7 +243,7 @@ function Index() {
             params={{ slug: blogOfTheDay.slug }}
             className="group grid md:grid-cols-[1fr_1.2fr] overflow-hidden rounded-xl border border-border bg-card hover:border-primary/60 transition"
           >
-            <div className="p-8 md:p-10 flex flex-col justify-center">
+            <div className="flex flex-col justify-center p-5 sm:p-8 md:p-10">
               <p className="font-mono text-xs uppercase tracking-widest text-primary mb-4">
                 {formatBlogDate(blogOfTheDay.publishedAt || blogOfTheDay.createdAt)}
               </p>

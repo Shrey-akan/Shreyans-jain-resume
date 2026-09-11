@@ -24,11 +24,11 @@ function BlogIndex() {
   const { blogOfTheDay, top } = Route.useLoaderData();
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-20 md:py-28">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
           <p className="font-mono text-xs uppercase tracking-widest text-primary mb-6">Writing</p>
-          <h1 className="font-display text-5xl md:text-7xl text-balance leading-[1]">Blog</h1>
+          <h1 className="font-display text-4xl leading-[1] text-balance sm:text-5xl md:text-7xl">Blog</h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
             Featured post, then the top 100. Like, comment, or write your own — you’ll be asked to
             sign in if you don’t have an account yet.
@@ -115,9 +115,9 @@ function FeaturedPost({ post }: { post: BlogCard }) {
           <div className="h-full min-h-56 md:min-h-80 bg-gradient-to-br from-primary/25 to-secondary" />
         )}
       </div>
-      <div className="p-8 md:p-10 flex flex-col justify-center">
+      <div className="flex flex-col justify-center p-5 sm:p-8 md:p-10">
         <p className="font-mono text-xs uppercase tracking-widest text-primary mb-4">Featured today</p>
-        <h2 className="font-display text-3xl md:text-4xl group-hover:text-primary transition">{post.title}</h2>
+        <h2 className="font-display text-2xl group-hover:text-primary transition sm:text-3xl md:text-4xl">{post.title}</h2>
         <p className="mt-4 text-muted-foreground leading-relaxed">{post.excerpt}</p>
         <div className="mt-6 flex items-center gap-3">
           <UserAvatar name={post.authorName} />
