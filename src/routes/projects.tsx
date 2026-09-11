@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ProfileNav } from "@/components/ProfileNav";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -121,10 +122,11 @@ function Projects() {
       <h1 className="font-display text-5xl md:text-7xl text-balance leading-[1] mb-6">
         Selected projects
       </h1>
-      <p className="text-muted-foreground max-w-2xl mb-16 leading-relaxed">
+      <p className="text-muted-foreground max-w-2xl mb-8 leading-relaxed">
         Production systems spanning consumer mobile applications, white-label platforms, analytics,
         and Java enterprise reporting.
       </p>
+      <ProfileNav className="mb-16" />
 
       <div className="space-y-6">
         {projects.map((p) => (

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ContactForm } from "@/components/ContactForm";
 import { DownloadDocs } from "@/components/DownloadDocs";
 import { PROFILE } from "@/lib/resume";
 
@@ -63,6 +64,10 @@ function Contact() {
             <span className="text-muted-foreground group-hover:text-primary transition">→</span>
           </a>
         ))}
+      </div>
+
+      <div className="mt-16">
+        <ContactForm />
       </div>
     </div>
   );

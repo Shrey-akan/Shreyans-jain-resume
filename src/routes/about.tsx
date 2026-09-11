@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DownloadDocs } from "@/components/DownloadDocs";
+import { ProfileNav } from "@/components/ProfileNav";
 import { PROFILE } from "@/lib/resume";
 
 export const Route = createFileRoute("/about")({
@@ -28,6 +29,7 @@ function About() {
       <h1 className="font-display text-5xl md:text-7xl text-balance leading-[1]">
         Professional summary
       </h1>
+      <ProfileNav className="mt-8" />
 
       <div className="mt-12 grid md:grid-cols-3 gap-12">
         <div className="md:col-span-2 space-y-6 text-lg leading-relaxed text-muted-foreground">

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ProfileNav } from "@/components/ProfileNav";
 
 export const Route = createFileRoute("/experience")({
   head: () => ({
@@ -93,10 +94,11 @@ function Experience() {
       <h1 className="font-display text-5xl md:text-7xl text-balance leading-[1] mb-6">
         Work history
       </h1>
-      <p className="text-muted-foreground max-w-2xl mb-16 leading-relaxed">
+      <p className="text-muted-foreground max-w-2xl mb-8 leading-relaxed">
         5+ years across consumer mobile products, white-label platforms, Java enterprise systems,
         and client e-commerce.
       </p>
+      <ProfileNav className="mb-16" />
 
       <ol className="relative border-l border-border ml-3">
         {jobs.map((job, i) => (

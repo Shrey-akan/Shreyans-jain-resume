@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { DownloadDocs } from "@/components/DownloadDocs";
+import { formatBlogDate } from "@/lib/blog";
+import { profileLinks } from "@/lib/nav";
 import { PROFILE } from "@/lib/resume";
+import { getBlogIndex } from "@/server/blogs";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,6 +22,7 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
+  loader: () => getBlogIndex(),
   component: Index,
 });
 
@@ -58,6 +62,8 @@ const featured = [
 ];
 
 function Index() {
+  const { blogOfTheDay } = Route.useLoaderData();
+
   return (
     <div className="grain">
       <section className="mx-auto max-w-6xl px-6 pt-16 md:pt-24 pb-16">
@@ -170,6 +176,27 @@ function Index() {
 
       <section className="mx-auto max-w-6xl px-6 pb-24">
         <div className="flex items-baseline justify-between mb-10">
+          <h2 className="font-display text-3xl md:text-4xl">Explore</h2>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {profileLinks.map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              className="rounded-lg border border-border bg-card p-6 hover:border-primary/60 transition group"
+            >
+              <h3 className="font-display text-2xl group-hover:text-primary transition">{item.label}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.hint}</p>
+              <p className="mt-4 font-mono text-xs uppercase tracking-widest text-muted-foreground group-hover:text-primary">
+                Open →
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-24">
+        <div className="flex items-baseline justify-between mb-10">
           <h2 className="font-display text-3xl md:text-4xl">Selected work</h2>
           <Link
             to="/projects"
@@ -202,6 +229,45 @@ function Index() {
           ))}
         </div>
       </section>
+
+      {blogOfTheDay ? (
+        <section className="mx-auto max-w-6xl px-6 pb-24">
+          <div className="flex items-baseline justify-between mb-10">
+            <h2 className="font-display text-3xl md:text-4xl">Blog of the day</h2>
+            <Link to="/blog" className="font-mono text-xs text-muted-foreground hover:text-primary">
+              All posts
+            </Link>
+          </div>
+          <Link
+            to="/blog/$slug"
+            params={{ slug: blogOfTheDay.slug }}
+            className="group grid md:grid-cols-[1fr_1.2fr] overflow-hidden rounded-xl border border-border bg-card hover:border-primary/60 transition"
+          >
+            <div className="p-8 md:p-10 flex flex-col justify-center">
+              <p className="font-mono text-xs uppercase tracking-widest text-primary mb-4">
+                {formatBlogDate(blogOfTheDay.publishedAt || blogOfTheDay.createdAt)}
+              </p>
+              <h3 className="font-display text-3xl group-hover:text-primary transition">
+                {blogOfTheDay.title}
+              </h3>
+              <p className="mt-4 text-muted-foreground leading-relaxed">{blogOfTheDay.excerpt}</p>
+              <p className="mt-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                {blogOfTheDay.likesCount} likes · {blogOfTheDay.commentsCount} comments · {blogOfTheDay.views}{" "}
+                reads
+              </p>
+            </div>
+            {blogOfTheDay.coverThumb ? (
+              <img
+                src={blogOfTheDay.coverThumb}
+                alt=""
+                className="h-full min-h-48 w-full object-cover"
+              />
+            ) : (
+              <div className="min-h-48 bg-secondary/40" />
+            )}
+          </Link>
+        </section>
+      ) : null}
     </div>
   );
 }

@@ -1,6 +1,10 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { AuthProvider } from "@/components/AuthProvider";
+import { FeedbackProvider } from "@/components/FeedbackProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { Toaster } from "@/components/ui/sonner";
 
 import appCss from "../styles.css?url";
 
@@ -85,11 +89,14 @@ export const Route = createRootRoute({
   notFoundComponent: NotFoundComponent,
 });
 
+const themeBootScript = `(function(){try{var t=localStorage.getItem('sj-theme');var r=document.documentElement;if(t==='light'){r.classList.remove('dark');r.classList.add('light');r.style.colorScheme='light';r.dataset.theme='light';}else{r.classList.add('dark');r.classList.remove('light');r.style.colorScheme='dark';r.dataset.theme='dark';}}catch(e){document.documentElement.classList.add('dark');document.documentElement.classList.remove('light');}})();`;
+
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
+        <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
       </head>
       <body>
         {children}
@@ -101,12 +108,19 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <SiteHeader />
-      <main className="flex-1">
-        <Outlet />
-      </main>
-      <SiteFooter />
-    </div>
+    <ThemeProvider>
+      <FeedbackProvider>
+        <AuthProvider>
+          <div className="min-h-screen flex flex-col bg-background text-foreground">
+            <SiteHeader />
+            <main className="flex-1">
+              <Outlet />
+            </main>
+            <SiteFooter />
+            <Toaster />
+          </div>
+        </AuthProvider>
+      </FeedbackProvider>
+    </ThemeProvider>
   );
 }
