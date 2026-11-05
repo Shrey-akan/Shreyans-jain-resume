@@ -1,4 +1,4 @@
-export const RESUME_PDF_PATH = "/Shreyans-Jain-Resume.pdf?v=4";
+export const RESUME_PDF_PATH = "/Shreyans-Jain-Resume.pdf?v=5";
 export const RESUME_PDF_FILENAME = "Shreyans-Jain-Resume.pdf";
 export const COVER_LETTER_PDF_PATH = "/Shreyans-Jain-Cover-Letter.pdf?v=1";
 export const COVER_LETTER_PDF_FILENAME = "Shreyans-Jain-Cover-Letter.pdf";

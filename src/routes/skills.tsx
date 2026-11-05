@@ -1,22 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ProfileNav } from "@/components/ProfileNav";
+import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/skills")({
-  head: () => ({
-    meta: [
-      { title: "Skills — Shreyans Jain" },
-      {
-        name: "description",
-        content:
-          "Technical skills: React Native, Node.js, AWS, Java, Spring Boot, Firebase, BigQuery, and related tools.",
-      },
-      { property: "og:title", content: "Skills — Shreyans Jain" },
-      {
-        property: "og:description",
-        content: "Technical skills: React Native, Node.js, AWS, Java, BigQuery.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Skills — React Native, Node.js, Java, AWS | Shreyans Jain",
+      description:
+        "Skills of Shreyans Jain: React Native, TypeScript, Node.js, Java, Spring Boot, AWS, Firebase, MongoDB, and Docker.",
+      path: "/skills",
+      keywords:
+        "React Native developer, Node.js, TypeScript, Java, Spring Boot, AWS, Firebase, MongoDB, Docker, Full Stack skills",
+    }),
   component: Skills,
 });
 

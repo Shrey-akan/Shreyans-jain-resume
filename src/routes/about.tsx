@@ -2,23 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { DownloadDocs } from "@/components/DownloadDocs";
 import { ProfileNav } from "@/components/ProfileNav";
 import { PROFILE } from "@/lib/resume";
+import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — Shreyans Jain" },
-      {
-        name: "description",
-        content:
-          "Professional profile of Shreyans Jain, Senior Full Stack Engineer and Founding Member at Trackzio. Bengaluru, India.",
-      },
-      { property: "og:title", content: "About — Shreyans Jain" },
-      {
-        property: "og:description",
-        content: "Senior Full Stack Engineer based in Bengaluru, India.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "About Shreyans Jain — Senior Full Stack Engineer, Bengaluru",
+      description:
+        "About Shreyans Jain, Senior Full Stack Engineer and founding member at Trackzio in Bengaluru. React Native, Node.js, Java, and AWS.",
+      path: "/about",
+    }),
   component: About,
 });
 
@@ -34,7 +27,7 @@ function About() {
       <div className="mt-12 grid md:grid-cols-3 gap-12">
         <div className="md:col-span-2 space-y-6 text-lg leading-relaxed text-muted-foreground">
           <p>
-            Senior Full Stack Engineer with <span className="text-foreground">5+ years</span> of
+            Senior Full Stack Engineer with <span className="text-foreground">5 years and 7 months</span> of
             experience building and operating production applications across mobile, web, and
             backend systems. Primary stack:{" "}
             <span className="text-foreground">React Native, Node.js, and AWS</span>, with
@@ -50,14 +43,13 @@ function About() {
             >
               Trackzio
             </a>
-            . Responsible for engineering delivery across identification products including
-            Banknote AI, Coinzy, and Rockzy, and for coordinating mobile, backend, and dashboard
-            teams.
+            . Responsible for engineering delivery across public identification products including
+            Banknote AI and Coinzy, and for coordinating mobile, backend, and dashboard teams.
           </p>
           <p>
             Designed the company’s white-label Experts platform (APIs, admin console, and expert
             workspace) and an internal analytics dashboard on Firebase and BigQuery. Earlier roles
-            covered Java hospital reporting, Spring Boot services, and Node.js / Angular products
+            covered Afford Plan reporting, Spring Boot services, and Node.js / Angular products
             deployed on AWS.
           </p>
         </div>
@@ -76,9 +68,9 @@ function About() {
             <p className="font-display text-xl">MCA, Computer Applications</p>
             <p className="text-sm text-muted-foreground">Chandigarh University</p>
             <p className="text-sm text-muted-foreground mb-4">Pursuing · Expected 2027</p>
-            <p className="font-display text-xl">BCA, Computer Science</p>
+            <p className="font-display text-xl">BCA, Computer Applications</p>
             <p className="text-sm text-muted-foreground">MDS University, Ajmer</p>
-            <p className="text-sm text-muted-foreground">2020 — 2023</p>
+            <p className="text-sm text-muted-foreground">2023 · Grade 8/10</p>
           </div>
           <div>
             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-2">

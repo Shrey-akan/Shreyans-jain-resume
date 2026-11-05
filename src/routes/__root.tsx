@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Toaster } from "@/components/ui/sonner";
 
+import { SEO_KEYWORDS } from "@/lib/seo";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -39,32 +40,27 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "Resume of Shreyans Jain — Senior Full Stack Engineer. React Native, Node.js, AWS, and Java. Founding Member at Trackzio.",
+          "Shreyans Jain is a Senior Full Stack Engineer in Bengaluru, India. React Native, Node.js, TypeScript, Java, Spring Boot, and AWS. Founding member at Trackzio.",
       },
+      { name: "keywords", content: SEO_KEYWORDS },
       { name: "author", content: "Shreyans Jain" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+      { name: "theme-color", content: "#f4efe6" },
       { property: "og:title", content: "Shreyans Jain — Senior Full Stack Engineer" },
       {
         property: "og:description",
         content:
-          "Resume of Shreyans Jain — Senior Full Stack Engineer. React Native, Node.js, AWS, and Java. Founding Member at Trackzio.",
+          "Senior Full Stack Engineer in Bengaluru. React Native, Node.js, TypeScript, Java, Spring Boot, and AWS.",
       },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:site_name", content: "Shreyans Jain" },
+      { property: "og:locale", content: "en_IN" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Shreyans Jain — Senior Full Stack Engineer" },
       {
         name: "twitter:description",
         content:
-          "Resume of Shreyans Jain — Senior Full Stack Engineer. React Native, Node.js, AWS, and Java. Founding Member at Trackzio.",
-      },
-      {
-        property: "og:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4b620c84-8510-4c2f-aa92-7379263d85c1/id-preview-68182519--4e41171c-80da-4e56-8477-3c3010f551c9.lovable.app-1776998857146.png",
-      },
-      {
-        name: "twitter:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4b620c84-8510-4c2f-aa92-7379263d85c1/id-preview-68182519--4e41171c-80da-4e56-8477-3c3010f551c9.lovable.app-1776998857146.png",
+          "Senior Full Stack Engineer in Bengaluru. React Native, Node.js, TypeScript, Java, Spring Boot, and AWS.",
       },
     ],
     links: [
@@ -76,7 +72,7 @@ export const Route = createRootRoute({
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&family=Syne:wght@500;600;700&display=swap",
       },
       {
         rel: "stylesheet",
@@ -89,7 +85,7 @@ export const Route = createRootRoute({
   notFoundComponent: NotFoundComponent,
 });
 
-const themeBootScript = `(function(){try{var t=localStorage.getItem('sj-theme');var r=document.documentElement;if(t==='light'){r.classList.remove('dark');r.classList.add('light');r.style.colorScheme='light';r.dataset.theme='light';}else{r.classList.add('dark');r.classList.remove('light');r.style.colorScheme='dark';r.dataset.theme='dark';}}catch(e){document.documentElement.classList.add('dark');document.documentElement.classList.remove('light');}})();`;
+const themeBootScript = `(function(){try{var t=localStorage.getItem('sj-theme');var r=document.documentElement;if(t==='dark'){r.classList.add('dark');r.classList.remove('light');r.style.colorScheme='dark';r.dataset.theme='dark';}else{r.classList.remove('dark');r.classList.add('light');r.style.colorScheme='light';r.dataset.theme='light';}}catch(e){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light');}})();`;
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (

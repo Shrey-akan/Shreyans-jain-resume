@@ -3,19 +3,18 @@ import { BlogStats } from "@/components/BlogStats";
 import { UserAvatar } from "@/components/UserAvatar";
 import { WritePostButton } from "@/components/WritePostButton";
 import { formatBlogDate, type BlogCard } from "@/lib/blog";
+import { pageHead } from "@/lib/seo";
 import { getBlogIndex } from "@/server/blogs";
 
 export const Route = createFileRoute("/blog/")({
-  head: () => ({
-    meta: [
-      { title: "Blog — Shreyans Jain" },
-      {
-        name: "description",
-        content: "Notes, engineering write-ups, and blog of the day from Shreyans Jain.",
-      },
-      { property: "og:title", content: "Blog — Shreyans Jain" },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Blog — Shreyans Jain, Full Stack Engineering Notes",
+      description:
+        "Engineering notes from Shreyans Jain on software architecture, DevOps, React Native, Node.js, and full-stack development.",
+      path: "/blog",
+      keywords: "Shreyans Jain blog, software architecture, microservices, DevOps, full stack engineering",
+    }),
   loader: () => getBlogIndex(),
   component: BlogIndex,
 });

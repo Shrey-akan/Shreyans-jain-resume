@@ -144,13 +144,13 @@ async function build() {
     "I am writing to apply for a Senior Full Stack Engineer role. I bring 5+ years of experience delivering production web applications, mobile applications, REST APIs, and cloud infrastructure, with a primary focus on React Native, Node.js, AWS, and Java.",
   );
   para(
-    "As a Founding Member and Senior Full Stack Engineer at Trackzio, I lead engineering across multiple identification products, including Banknote AI, Coinzy, and Rockzy. I shipped Banknote AI on Android and iOS from a single React Native and TypeScript codebase. The application now has 40,000+ downloads, 7,000+ daily active users, and a 4.3+ store rating.",
+    "As a Founding Member and Senior Full Stack Engineer at Trackzio, I lead engineering across public identification products, including Banknote AI and Coinzy. I shipped Banknote AI on Android and iOS from a single React Native and TypeScript codebase.",
   );
   para(
-    "I designed the company's white-label Experts platform in Node.js and Express, with MongoDB, Redis, and AWS S3, so admin and expert dashboards can be branded and deployed for each product. I also built an internal analytics dashboard on Firebase, BigQuery, and React covering product KPIs, conversion funnels, and cohort LTV, and I coordinate mobile, backend, and dashboard teams through release.",
+    "I designed the company's white-label Experts platform in Node.js and Express, with MongoDB, Redis, and AWS S3, so admin and expert dashboards can be branded and deployed for each product. I also built an internal analytics dashboard on Firebase, BigQuery, and React, and I coordinate mobile, backend, and dashboard teams through release.",
   );
   para(
-    "Earlier in my career I delivered Java and Spring systems, including hospital reporting on Afford Plan (Java 17 and Hibernate 6), Spring Boot services, and client work in Figma, Shopify, Magento, and WordPress. I hold a BCA in Computer Science from MDS University, Ajmer, and I am pursuing an MCA at Chandigarh University, expected in 2027.",
+    "Earlier in my career I delivered Java and Spring systems, including a client reporting upgrade to Java 17 and Hibernate 6, Spring Boot services, and client work in Figma, Shopify, Magento, and WordPress. I hold a BCA in Computer Science from MDS University, Ajmer, and I am pursuing an MCA at Chandigarh University, expected in 2027.",
   );
   para(
     "I would welcome the opportunity to discuss how I can contribute to your engineering team. My resume is enclosed. I am based in Bengaluru and can be reached at shreyansjain2603@gmail.com or +91 74548 49868.",

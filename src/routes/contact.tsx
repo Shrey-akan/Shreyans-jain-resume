@@ -2,22 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ContactForm } from "@/components/ContactForm";
 import { DownloadDocs } from "@/components/DownloadDocs";
 import { PROFILE } from "@/lib/resume";
+import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — Shreyans Jain" },
-      {
-        name: "description",
-        content: "Contact Shreyans Jain — Senior Full Stack Engineer, Bengaluru.",
-      },
-      { property: "og:title", content: "Contact — Shreyans Jain" },
-      {
-        property: "og:description",
-        content: "Email, phone, LinkedIn, and company profile.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Contact Shreyans Jain — Senior Full Stack Engineer, Bengaluru",
+      description:
+        "Contact Shreyans Jain, Senior Full Stack Engineer in Bengaluru. Email, phone, and LinkedIn for full-stack, React Native, and Java roles.",
+      path: "/contact",
+      keywords: "contact Shreyans Jain, hire full stack engineer Bengaluru, React Native developer India",
+    }),
   component: Contact,
 });
 

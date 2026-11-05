@@ -1,22 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ProfileNav } from "@/components/ProfileNav";
+import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/experience")({
-  head: () => ({
-    meta: [
-      { title: "Experience — Shreyans Jain" },
-      {
-        name: "description",
-        content:
-          "Professional experience: Trackzio, JCentrix, Orage Technologies, and JAS Tech. React Native, Node.js, AWS, Java.",
-      },
-      { property: "og:title", content: "Experience — Shreyans Jain" },
-      {
-        property: "og:description",
-        content: "5+ years of full-stack engineering experience.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Work Experience — Shreyans Jain, Full Stack Engineer",
+      description:
+        "Work experience of Shreyans Jain: Senior Full Stack Engineer at Trackzio, plus JCentrix, Orage Technologies, and JAS Tech. React Native, Node.js, AWS, and Java.",
+      path: "/experience",
+      keywords:
+        "Shreyans Jain experience, Trackzio engineer, JCentrix, Orage Technologies, React Native, Node.js, AWS, Java, Full Stack Engineer Bengaluru",
+    }),
   component: Experience,
 });
 
@@ -24,16 +19,16 @@ const jobs = [
   {
     role: "Senior Full Stack Engineer, Founding Member",
     company: "Trackzio",
-    companyHref: "https://trackzio.com/about/",
+    companyHref: "https://www.linkedin.com/company/trackzio-apps",
+    logo: "/companies/trackzio.svg",
     location: "Bengaluru, India",
     period: "Dec 2025 — Present",
     bullets: [
-      "Lead engineering for multiple AI identification products (Banknote AI, Coinzy, Rockzy), coordinating mobile, backend, and dashboard teams from design through release.",
+      "Lead engineering for public identification products (Banknote AI and Coinzy), coordinating mobile, backend, and dashboard teams from design through release.",
       "Designed a white-label Experts platform in Node.js and Express (MongoDB, Redis, Socket.IO, AWS S3), with branded admin and expert dashboards deployed per product.",
-      "Delivered Banknote AI on Android and iOS from a single React Native / TypeScript codebase: camera identification, Google Play Billing and StoreKit purchases, and FCM / APNs notifications.",
-      "Banknote AI live metrics: 40,000+ downloads, 7,000+ daily active users, 4.3+ store rating, and a catalogue of 25,000+ banknotes.",
-      "Built the internal product-analytics dashboard (Firebase, BigQuery, Node.js, React) with 10 KPIs, conversion funnels, and cohort LTV for Banknote and Coinzy.",
-      "Implemented expert evaluation workflows including credit-based requests, allocation, structured reports, and real-time queue updates.",
+      "Delivered Banknote AI on Android and iOS from a single React Native / TypeScript codebase, including camera identification, store billing, and push notifications.",
+      "Built an internal product-analytics dashboard (Firebase, BigQuery, Node.js, React) for the identification products.",
+      "Implemented expert evaluation workflows, structured reports, and real-time queue updates.",
       "Operate AWS and Docker production environments, GitHub Actions CI/CD, and engineering handovers for parallel team delivery.",
     ],
     stack: [
@@ -50,20 +45,24 @@ const jobs = [
   {
     role: "Software Engineer",
     company: "JCentrix Private Limited",
+    companyHref: "https://www.linkedin.com/company/jcentrix",
+    logo: "/companies/jcentrix.png",
     location: "Noida, India",
     period: "Nov 2024 — Dec 2025",
     bullets: [
       "Developed poornasatya.com, a food-product comparison platform, using Node.js, Angular 14, MySQL, TypeORM, Redis, JWT-based access control, and AWS.",
-      "Engineered Afford Plan hospital reporting in Java 17, Hibernate 6, and MySQL, including monthly SOC modules with date, facility, and department filters.",
-      "Led the Afford Plan upgrade from Java 8 to Java 17 and Hibernate 4 to 6; resolved API defects and optimized queries for large monthly datasets.",
+      "Engineered Afford Plan reporting modules in Java 17, Hibernate 6, and MySQL.",
+      "Led a production upgrade from Java 8 to Java 17 and Hibernate 4 to 6; resolved API defects and optimized queries for large datasets.",
       "Established CI/CD with Jenkins, GitHub Actions, and Docker, and coordinated production releases with QA.",
-      "Supported Openbravo ERP analysis and documentation, and managed client-facing enhancements.",
+      "Supported ERP analysis and documentation, and managed client-facing enhancements.",
     ],
     stack: ["Java 17", "Hibernate", "Spring", "Node.js", "Angular", "MySQL", "AWS", "Docker"],
   },
   {
     role: "Junior Software Engineer",
     company: "Orage Technologies Pvt. Ltd.",
+    companyHref: "https://www.linkedin.com/company/orage-technologies-private-limited",
+    logo: "/companies/orage.jpg?v=3",
     location: "Noida, India",
     period: "Aug 2023 — Nov 2024",
     bullets: [
@@ -95,7 +94,7 @@ function Experience() {
         Work history
       </h1>
       <p className="text-muted-foreground max-w-2xl mb-8 leading-relaxed">
-        5+ years across consumer mobile products, white-label platforms, Java enterprise systems,
+        5 years and 7 months across consumer mobile products, white-label platforms, Java enterprise systems,
         and client e-commerce.
       </p>
       <ProfileNav className="mb-16" />
@@ -110,7 +109,14 @@ function Experience() {
               <h2 className="font-display text-2xl md:text-3xl">{job.role}</h2>
               <span className="font-mono text-xs text-muted-foreground">{job.period}</span>
             </div>
-            <p className="text-primary font-medium mb-5">
+            <p className="mb-5 flex flex-wrap items-center gap-3 text-primary font-medium">
+              {"logo" in job && job.logo ? (
+                <img
+                  src={job.logo}
+                  alt=""
+                  className="h-14 w-auto max-w-40 rounded-md bg-white object-contain"
+                />
+              ) : null}
               {"companyHref" in job && job.companyHref ? (
                 <a
                   href={job.companyHref}
@@ -171,10 +177,10 @@ function Experience() {
             <div>
               <h2 className="font-display text-2xl">Bachelor of Computer Applications (BCA)</h2>
               <p className="text-muted-foreground mt-1">
-                MDS University, Ajmer · Computer Science
+                MDS University, Ajmer · Computer Applications · Grade 8/10
               </p>
             </div>
-            <span className="font-mono text-xs text-muted-foreground">2020 — 2023</span>
+            <span className="font-mono text-xs text-muted-foreground">2023</span>
           </div>
         </div>
       </div>

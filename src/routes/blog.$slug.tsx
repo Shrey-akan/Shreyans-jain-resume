@@ -5,6 +5,7 @@ import { BlogStats } from "@/components/BlogStats";
 import { UserAvatar } from "@/components/UserAvatar";
 import { WritePostButton } from "@/components/WritePostButton";
 import { BlogBody, formatBlogDate, type BlogPost } from "@/lib/blog";
+import { pageHead, SEO_KEYWORDS } from "@/lib/seo";
 import { getBlogBySlug, recordBlogView } from "@/server/blogs";
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -15,15 +16,14 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   head: ({ loaderData }) => {
     const post = loaderData as BlogPost | undefined;
-    return {
-      meta: [
-        { title: post ? `${post.title} — Shreyans Jain` : "Blog — Shreyans Jain" },
-        {
-          name: "description",
-          content: post?.excerpt ?? "A note from Shreyans Jain.",
-        },
-      ],
-    };
+    return pageHead({
+      title: post ? `${post.title} — Shreyans Jain` : "Blog — Shreyans Jain",
+      description: post?.excerpt ?? "A note from Shreyans Jain on full-stack engineering.",
+      path: post ? `/blog/${post.slug}` : "/blog",
+      type: "article",
+      keywords: post ? `${post.title}, ${SEO_KEYWORDS}` : SEO_KEYWORDS,
+      image: post?.coverThumb || post?.coverImage || "/shreyans-coding.png",
+    });
   },
   component: BlogPostPage,
 });

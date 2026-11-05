@@ -39,13 +39,13 @@ The hard part was not “can React Native do this”. It was keeping store-speci
 
 ## What broke, and how we resolved it
 
-Billing was the first real fire. A successful purchase on one store did not mean the client and server agreed on entitlements. We moved “has access” to the backend, verified receipts server-side, and treated the store SDK as a payment method, not the source of truth.
+Billing was the first real fire. A successful purchase on one store did not mean the app and the account agreed. We kept purchase checks on the backend so both stores followed the same rules.
 
-The second was identification quality in the wild. Indoor light, cropped corners, worn notes. We tightened the crop step before inference and logged identification success into Firebase so we could see failure modes instead of guessing from store reviews.
+The second was identification quality in the wild. Indoor light, cropped corners, worn notes. We tightened the crop step before inference and used production logs to see failure modes instead of guessing from store reviews.
 
 ## Result
 
-Banknote AI is live on Google Play and the App Store: 40,000+ downloads, 7,000+ daily active users, 4.3+ rating, and a catalogue of 25,000+ notes. The same codebase is what let us keep iterating after launch instead of maintaining two products.`,
+Banknote AI is live on Google Play and the App Store. The same codebase is what let us keep iterating after launch instead of maintaining two products.`,
   },
   {
     slug: "white-label-experts-platform-without-forking-every-app",
@@ -55,11 +55,11 @@ Banknote AI is live on Google Play and the App Store: 40,000+ downloads, 7,000+ 
     isBlogOfTheDay: false,
     publishedAt: new Date("2026-07-02T10:00:00.000Z"),
     views: 31,
-    body: `Once Banknote AI had traction, Coinzy needed the same expert loop: a collector pays credits, an expert reviews media, a structured report comes back. The naive path was copy the service, change the logo, ship. That path does not survive a third product.
+    body: `Once Banknote AI had traction, Coinzy needed the same expert loop: a collector submits media, an expert reviews it, and a structured report comes back. The naive path was copy the service, change the logo, ship. That path does not survive a third product.
 
 ## The problem
 
-Each app wanted its own admin console, expert workspace, and notifications. The lifecycle was identical: purchase credits, allocate a request, acceptance window, report, PDF, refunds. If we forked, every workflow bug would be fixed twice, then three times.
+Each app wanted its own admin console, expert workspace, and notifications. The lifecycle was the same: submit a request, assign an expert, return a report, and export a PDF. If we forked, every workflow bug would be fixed twice, then three times.
 
 ## What I designed
 
@@ -76,83 +76,80 @@ Mobile teams integrate the same APIs. They do not own the evaluation engine.
 
 ## What we had to resolve
 
-Allocation was the painful bit. Credits, timeouts, and “who has this request” raced under concurrent experts. We made assignment an atomic step with an acceptance window, and pushed status over the socket so the expert UI did not poll itself into conflicts.
+Allocation was the painful bit. Timeouts and “who has this request” raced under concurrent experts. We made assignment an atomic step and pushed status over the socket so the expert UI did not poll itself into conflicts.
 
-The other issue was rollout. A shared platform is useless if every new app still needs a core engineer. We documented the integration path — credits, media upload, status, report — so Android and React Native teams could attach a new product without forking services.
+The other issue was rollout. A shared platform is useless if every new app still needs a core engineer. We documented the integration path — media upload, status, and report — so Android and React Native teams could attach a new product without forking services.
 
 ## Result
 
-Coinzy and Banknote AI run on the same engine, with their own dashboards. Expert evaluation, credits, and reports stay one system. The next identification product does not start from zero.`,
+Coinzy and Banknote AI run on the same engine, with their own dashboards. Expert evaluation and reports stay one system. The next identification product does not start from zero.`,
   },
   {
     slug: "firebase-to-bigquery-product-analytics-we-could-trust",
     title: "Firebase events were not a product dashboard. Here’s what we built.",
     excerpt:
-      "We had plenty of events and no shared picture of DAU, scan success, or paywall conversion. The fix was a Firebase → BigQuery pipeline and an internal React dashboard.",
+      "We had plenty of events and no shared picture of how the products were used. The fix was a Firebase to BigQuery pipeline and an internal React dashboard.",
     isBlogOfTheDay: false,
     publishedAt: new Date("2026-05-21T10:00:00.000Z"),
     views: 27,
-    body: `Ask three people how Banknote was doing and you got three answers: store console, a Firebase chart, a spreadsheet. None of them matched. We needed one place for DAU, identification success, quotas, and whether the paywall actually converted.
+    body: `Ask three people how Banknote was doing and you got three answers: store console, a Firebase chart, a spreadsheet. None of them matched. We needed one internal place where product and engineering looked at the same picture.
 
 ## The problem
 
-Firebase is fine for instrumentation. It is not a product room. Funnel questions — install to first scan, D1 / D4 / D7, cohort LTV — died in event dumps. Coinzy and Banknote also needed comparison, not two separate exports.
+Firebase is fine for instrumentation. It is not a product room. Usage questions died in event dumps. Coinzy and Banknote also needed comparison, not two separate exports.
 
 ## What I built
 
 An internal analytics app:
 
 - Daily aggregation from Firebase into BigQuery.
-- Node.js API in front of BigQuery, with Redis for hot KPIs.
-- MongoDB for cohort LTV that did not belong in a raw event table.
-- React UI: ten KPIs, funnels, health, event catalogue, a SQL editor, 30 / 90 / 180-day LTV.
+- Node.js API in front of BigQuery, with Redis for frequently read summaries.
+- A React UI for comparing the applications.
 - Role-based access so a person sees the apps they own.
 - Docker in production.
 
 ## How we resolved the messy data
 
-The first dashboard was wrong. Event names drifted. Some scans never fired “success”. Paywall views and purchases lived on different properties.
-
-We published an event catalogue and treated it as a contract. The pipeline mapped old names forward. Identification success became a defined event, not a guess from session length. That is what made funnels comparable week to week.
+The first dashboard was wrong because event names drifted between releases. We treated the event names as a contract and mapped older names forward in the pipeline. That made the views comparable week to week.
 
 ## Result
 
-Product and engineering now look at the same ten KPIs for Banknote and Coinzy. When identification success or paywall conversion moves, we see it the next day — not after a store-review spike.`,
+Product and engineering now use the same internal dashboard for Banknote and Coinzy, instead of reconciling separate exports.`,
   },
   {
-    slug: "java-8-to-17-hospital-reporting-without-stopping-month-end",
-    title: "Java 8 to 17 in a hospital reporting system — without stopping month-end",
+    slug: "java-8-to-17-without-stopping-the-reports",
+    title: "Java 8 to 17 in a client reporting system — without stopping the reports",
     excerpt:
-      "Afford Plan had to keep producing monthly SOC packs while we moved Java 8 and Hibernate 4 to Java 17 and Hibernate 6. The upgrade was the easy part. The queries were not.",
+      "A client reporting system had to keep running while we moved Java 8 and Hibernate 4 to Java 17 and Hibernate 6. The upgrade was the easy part. The queries were not.",
     isBlogOfTheDay: false,
     publishedAt: new Date("2025-09-14T10:00:00.000Z"),
     views: 19,
-    body: `At JCentrix I owned Afford Plan: monthly SOC reporting for hospitals, filtered by date, facility, and department. The runtime was Java 8 and Hibernate 4. Security, library support, and operational risk all said move. Finance still needed month-end on the old stack until the new one was proven.
+    body: `At JCentrix I owned a client reporting system. The runtime was Java 8 and Hibernate 4. Security, library support, and operational risk all said move. The client still needed the existing reports until the new stack was proven.
 
 ## The problem
 
-A big-bang cutover would have frozen reporting. Hibernate 6 does not behave like 4. APIs that “just returned a list” started lazy-loading, missing constructors, or timing out on a month of facility data.
+A big-bang cutover would have frozen reporting. Hibernate 6 does not behave like 4. APIs that “just returned a list” started lazy-loading, missing constructors, or timing out on large result sets.
 
 ## How I approached it
 
 We upgraded in place, behind the same reports.
 
-- Java 8 → 17, Hibernate 4.4 → 6.6, MySQL kept as the source of truth.
+- Java 8 to 17, Hibernate 4 to 6, MySQL kept as the source of truth.
 - Compatibility layer for APIs the UI already called.
-- Query work on the monthly packs: the reports that scanned too much data got explicit fetch plans and tighter filters.
-- Role-based access so staff and admins did not share one god login.
+- Query work on the reports that scanned too much data: explicit fetch plans and tighter filters.
+- Role-based access so staff and admins did not share one login.
 - Jenkins and GitHub Actions for CI, Docker on AWS for the new runtime.
-- QA on the release train, not a single “migration weekend”.
+- QA on the release train, not a single migration weekend.
 
 ## What we actually resolved
 
-The failures were not compiler errors. They were month-end queries that looked fine in staging with a week of data. We pulled slow queries from production-shaped datasets, reduced N+1 access in Hibernate, and stopped loading full collections when a report only needed aggregates.
+The failures were not compiler errors. They were heavy queries that looked fine in staging with a small sample. We pulled slow queries from larger datasets, reduced N+1 access in Hibernate, and stopped loading full collections when a report only needed aggregates.
 
-API defects after the bump were treated as product bugs, not “framework noise”: same endpoints, corrected behaviour, regression tests before the next hospital cycle.
+API defects after the bump were treated as product bugs, not framework noise: same endpoints, corrected behaviour, and regression tests before the next release.
 
 ## Result
 
-Afford Plan kept shipping monthly SOC modules on Java 17 and Hibernate 6. The upgrade did not take reporting offline, and the large monthly datasets got faster instead of becoming the reason to stay on Java 8.`,
+The reporting system kept shipping on Java 17 and Hibernate 6. The upgrade did not take reporting offline, and the large datasets got faster instead of becoming the reason to stay on Java 8.`,
   },
 ];
 
@@ -161,7 +158,10 @@ await client.connect();
 const db = client.db(env.MONGODB_DB || "shreyans_jain");
 const blogs = db.collection("blogs");
 
-const dummySlugs = ["hello-from-the-studio"];
+const dummySlugs = [
+  "hello-from-the-studio",
+  "java-8-to-17-hospital-reporting-without-stopping-month-end",
+];
 
 await blogs.deleteMany({ slug: { $in: dummySlugs } });
 await blogs.updateMany({ slug: { $nin: posts.map((post) => post.slug) } }, { $set: { isBlogOfTheDay: false } });

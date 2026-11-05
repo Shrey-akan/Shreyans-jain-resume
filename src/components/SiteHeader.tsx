@@ -1,10 +1,19 @@
+import type { MouseEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@/components/AuthProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { UserAvatar } from "@/components/UserAvatar";
-import { headerLinks } from "@/lib/nav";
+import { RESUME_PDF_FILENAME, RESUME_PDF_PATH } from "@/lib/resume";
+
+const sectionLinks = [
+  { href: "/", id: "top", label: "Home" },
+  { href: "/#work", id: "work", label: "Experience" },
+  { href: "/#skills", id: "skills", label: "Skills" },
+  { href: "/#projects", id: "projects", label: "Projects" },
+  { href: "/#contact", id: "contact", label: "Contact" },
+] as const;
 
 const navLinkClass =
   "block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors";
@@ -38,7 +47,7 @@ export function SiteHeader() {
       }
     }
     function onResize() {
-      if (window.innerWidth >= 768) setNavOpen(false);
+      if (window.innerWidth >= 1024) setNavOpen(false);
     }
     document.addEventListener("pointerdown", onPointerDown);
     window.addEventListener("resize", onResize);
@@ -54,27 +63,56 @@ export function SiteHeader() {
     setMenuOpen(false);
   }
 
-  return (
-    <header ref={headerRef} className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md">
-      <div className="h-0.5 bg-primary" />
-      <div className="mx-auto flex h-14 max-w-6xl items-center gap-2 px-4 sm:h-16 sm:gap-4 sm:px-6">
-        <Link to="/" className="min-w-0 shrink-0" onClick={closeNav}>
-          <span className="font-display text-lg font-semibold tracking-tight sm:text-xl">
-            Shreyans<span className="text-primary">.</span>
-          </span>
-        </Link>
+  function onSectionClick(event: MouseEvent<HTMLAnchorElement>, id: string) {
+    event.preventDefault();
+    event.stopPropagation();
+    document.body.style.overflow = "";
+    closeNav();
+    if (id === "top") {
+      if (window.location.pathname !== "/") {
+        window.location.assign("/");
+        return;
+      }
+      window.setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.history.replaceState(null, "", "/");
+      }, 40);
+      return;
+    }
+    if (window.location.pathname !== "/") {
+      window.location.assign(`/#${id}`);
+      return;
+    }
+    window.setTimeout(() => {
+      const section = document.getElementById(id);
+      if (!section) return;
+      const top = section.getBoundingClientRect().top + window.scrollY - 72;
+      window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+      window.history.replaceState(null, "", `/#${id}`);
+    }, 40);
+  }
 
-        <nav className="ml-auto hidden items-center gap-1 md:flex" aria-label="Primary">
-          {headerLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
+  return (
+    <header ref={headerRef} className="sticky top-0 z-40 border-b border-border/50 bg-background/75 backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-center gap-1 px-3 sm:gap-2 sm:px-6">
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+          {sectionLinks.map((link) => (
+            <a
+              key={link.id}
+              href={link.href}
               className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-              activeProps={{ className: "rounded-md bg-secondary/50 px-3 py-2 text-sm text-foreground" }}
+              onClick={(event) => onSectionClick(event, link.id)}
             >
               {link.label}
-            </Link>
+            </a>
           ))}
+          <Link
+            to="/blog"
+            className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            activeProps={{ className: "rounded-md bg-secondary/50 px-3 py-2 text-sm text-foreground" }}
+          >
+            Blog
+          </Link>
           {ready && user?.role === "admin" ? (
             <Link
               to="/studio"
@@ -86,7 +124,14 @@ export function SiteHeader() {
           ) : null}
         </nav>
 
-        <div className="ml-auto flex items-center gap-1.5 sm:gap-2 md:ml-0">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <a
+            href={RESUME_PDF_PATH}
+            download={RESUME_PDF_FILENAME}
+            className="inline-flex items-center rounded-full bg-primary px-3 py-2 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.03] sm:px-4"
+          >
+            Download resume
+          </a>
           <ThemeToggle />
           {ready && user ? (
             <div className="relative" ref={menuRef}>
@@ -103,17 +148,13 @@ export function SiteHeader() {
                 <div className="absolute right-0 top-full z-50 mt-2 w-44 rounded-lg border border-border bg-card p-2 shadow-lg">
                   <p className="truncate px-2 py-1.5 text-xs text-muted-foreground">{user.name}</p>
                   {user.role === "admin" ? (
-                    <Link
-                      to="/studio"
-                      className="block rounded-md px-2 py-2 text-sm hover:bg-secondary"
-                      onClick={closeNav}
-                    >
+                    <Link to="/studio" className="block rounded-md px-2 py-2 text-sm hover:bg-secondary" onClick={closeNav}>
                       Admin
                     </Link>
                   ) : null}
                   <Link
                     to="/write"
-                    className="block rounded-md px-2 py-2 text-sm hover:bg-secondary md:hidden"
+                    className="block rounded-md px-2 py-2 text-sm hover:bg-secondary lg:hidden"
                     onClick={closeNav}
                   >
                     Write
@@ -141,7 +182,7 @@ export function SiteHeader() {
           )}
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border lg:hidden"
             aria-label={navOpen ? "Close menu" : "Open menu"}
             aria-expanded={navOpen}
             onClick={() => setNavOpen((open) => !open)}
@@ -153,15 +194,23 @@ export function SiteHeader() {
 
       {navOpen ? (
         <nav
-          className="border-t border-border/60 bg-background px-4 py-3 md:hidden"
+          className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border/60 bg-background px-4 py-3 lg:hidden"
           aria-label="Mobile"
         >
           <div className="mx-auto flex max-w-6xl flex-col gap-1">
-            {headerLinks.map((link) => (
-              <Link key={link.to} to={link.to} className={navLinkClass} activeProps={{ className: navActiveClass }} onClick={closeNav}>
+            {sectionLinks.map((link) => (
+              <a
+                key={link.id}
+                href={link.href}
+                className={navLinkClass}
+                onClick={(event) => onSectionClick(event, link.id)}
+              >
                 {link.label}
-              </Link>
+              </a>
             ))}
+            <Link to="/blog" className={navLinkClass} activeProps={{ className: navActiveClass }} onClick={closeNav}>
+              Blog
+            </Link>
             {ready && user?.role === "admin" ? (
               <Link to="/studio" className={navLinkClass} activeProps={{ className: navActiveClass }} onClick={closeNav}>
                 Admin

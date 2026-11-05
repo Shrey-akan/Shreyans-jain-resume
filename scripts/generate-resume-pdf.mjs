@@ -323,19 +323,16 @@ async function build() {
     "December 2025 - Present",
   );
   bullet(
-    "Lead full stack engineering for multiple production mobile applications including Banknote AI, Coinzy, and Rockzy, coordinating React Native, Android, backend, and dashboard teams.",
+    "Lead full stack engineering for public identification products including Banknote AI and Coinzy, coordinating React Native, Android, backend, and dashboard teams.",
   );
   bullet(
     "Architected a white-label Experts platform using Node.js, Express.js, MongoDB, Redis, REST APIs, Socket.IO, and AWS S3, with branded admin and expert dashboards deployed per product.",
   );
   bullet(
-    "Developed and released Banknote AI for Android and iOS using React Native and TypeScript, including camera-based identification, Google Play Billing, Apple StoreKit, Firebase Cloud Messaging, and APNs.",
+    "Developed and released Banknote AI for Android and iOS using React Native and TypeScript, including camera-based identification, store billing, and push notifications.",
   );
   bullet(
-    "Scaled Banknote AI to 40,000+ downloads, 7,000+ daily active users, 4.3+ store rating, and a catalogue of 25,000+ banknotes.",
-  );
-  bullet(
-    "Built an internal product analytics dashboard using Firebase, Google BigQuery, Node.js, and React covering 10 KPIs, conversion funnels, retention, and cohort LTV.",
+    "Built an internal product analytics dashboard using Firebase, Google BigQuery, Node.js, and React for the identification products.",
   );
   bullet(
     "Implemented CI/CD with GitHub Actions and Docker, and operated AWS production infrastructure for APIs, media storage, and scheduled jobs.",
@@ -347,13 +344,13 @@ async function build() {
     "Developed poornasatya.com, a food product comparison web application, using Node.js, Express.js, Angular, MySQL, TypeORM, Redis, JWT authentication, and AWS.",
   );
   bullet(
-    "Engineered Afford Plan hospital reporting modules in Java 17, Spring, Hibernate 6, and MySQL, including monthly SOC reports with date, facility, and department filters.",
+    "Engineered client reporting modules in Java 17, Spring, Hibernate 6, and MySQL.",
   );
   bullet(
-    "Led migration of Afford Plan from Java 8 to Java 17 and Hibernate 4 to Hibernate 6, resolved REST API defects, and optimized SQL queries for large monthly datasets.",
+    "Led a production migration from Java 8 to Java 17 and Hibernate 4 to Hibernate 6, resolved REST API defects, and optimized SQL queries for large datasets.",
   );
   bullet(
-    "Established CI/CD pipelines with Jenkins, GitHub Actions, and Docker, and supported Openbravo ERP documentation and client enhancements.",
+    "Established CI/CD pipelines with Jenkins, GitHub Actions, and Docker, and supported ERP documentation and client enhancements.",
   );
   y -= 4;
 
@@ -381,16 +378,16 @@ async function build() {
 
   section("PROJECTS");
   bullet(
-    "Banknote AI: Cross-platform React Native mobile application for Android and iOS with Node.js backend, Firebase, and AWS. 40,000+ downloads and 7,000+ daily active users. https://trackzio.com/apps/banknotes",
+    "Banknote AI: Cross-platform React Native mobile application for Android and iOS with Node.js backend, Firebase, and AWS. https://trackzio.com/apps/banknotes",
   );
   bullet(
     "Experts White-label Platform: Reusable Node.js and Express.js evaluation system with MongoDB, Redis, AWS S3, admin dashboard, and expert dashboard used across multiple Trackzio applications.",
   );
   bullet(
-    "Product Analytics Dashboard: Firebase to BigQuery analytics application with Node.js APIs and React UI for KPIs, funnels, SQL exploration, and LTV reporting.",
+    "Product Analytics Dashboard: Firebase to BigQuery analytics application with Node.js APIs and a React UI for the identification products.",
   );
   bullet(
-    "Afford Plan: Java 17, Spring, Hibernate, and MySQL hospital reporting system with CI/CD on Jenkins and Docker.",
+    "Client reporting system: Java 17, Spring, Hibernate, and MySQL reporting application with CI/CD on Jenkins and Docker.",
   );
   bullet(
     "poornasatya.com: Node.js, Angular, MySQL, Redis, and AWS food product comparison platform with JWT and role-based access control.",

@@ -13,6 +13,7 @@ export const Route = createFileRoute("/write")({
     meta: [
       { title: "Write — Shreyans Jain" },
       { name: "description", content: "Create an account, log in, and submit a blog for review." },
+      { name: "robots", content: "noindex, nofollow" },
     ],
   }),
   component: WritePage,

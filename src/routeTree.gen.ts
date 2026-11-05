@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WriteRouteImport } from './routes/write'
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as SkillsRouteImport } from './routes/skills'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ExperienceRouteImport } from './routes/experience'
@@ -37,6 +39,16 @@ const StudioRoute = StudioRouteImport.update({
 const SkillsRoute = SkillsRouteImport.update({
   id: '/skills',
   path: '/skills',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsRoute = ProjectsRouteImport.update({
@@ -104,6 +116,8 @@ export interface FileRoutesByFullPath {
   '/experience': typeof ExperienceRoute
   '/login': typeof LoginRoute
   '/projects': typeof ProjectsRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/skills': typeof SkillsRoute
   '/studio': typeof StudioRoute
   '/write': typeof WriteRoute
@@ -119,6 +133,8 @@ export interface FileRoutesByTo {
   '/experience': typeof ExperienceRoute
   '/login': typeof LoginRoute
   '/projects': typeof ProjectsRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/skills': typeof SkillsRoute
   '/studio': typeof StudioRoute
   '/write': typeof WriteRoute
@@ -136,6 +152,8 @@ export interface FileRoutesById {
   '/experience': typeof ExperienceRoute
   '/login': typeof LoginRoute
   '/projects': typeof ProjectsRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/skills': typeof SkillsRoute
   '/studio': typeof StudioRoute
   '/write': typeof WriteRoute
@@ -154,6 +172,8 @@ export interface FileRouteTypes {
     | '/experience'
     | '/login'
     | '/projects'
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/skills'
     | '/studio'
     | '/write'
@@ -169,6 +189,8 @@ export interface FileRouteTypes {
     | '/experience'
     | '/login'
     | '/projects'
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/skills'
     | '/studio'
     | '/write'
@@ -185,6 +207,8 @@ export interface FileRouteTypes {
     | '/experience'
     | '/login'
     | '/projects'
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/skills'
     | '/studio'
     | '/write'
@@ -202,6 +226,8 @@ export interface RootRouteChildren {
   ExperienceRoute: typeof ExperienceRoute
   LoginRoute: typeof LoginRoute
   ProjectsRoute: typeof ProjectsRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SkillsRoute: typeof SkillsRoute
   StudioRoute: typeof StudioRoute
   WriteRoute: typeof WriteRoute
@@ -228,6 +254,20 @@ declare module '@tanstack/react-router' {
       path: '/skills'
       fullPath: '/skills'
       preLoaderRoute: typeof SkillsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects': {
@@ -341,6 +381,8 @@ const rootRouteChildren: RootRouteChildren = {
   ExperienceRoute: ExperienceRoute,
   LoginRoute: LoginRoute,
   ProjectsRoute: ProjectsRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SkillsRoute: SkillsRoute,
   StudioRoute: StudioRoute,
   WriteRoute: WriteRoute,
