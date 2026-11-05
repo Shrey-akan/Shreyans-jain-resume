@@ -1,5 +1,8 @@
+import { setDefaultResultOrder } from "node:dns";
 import { MongoClient, ObjectId, type Collection, type Db } from "mongodb";
 import { mongoDbName, mongoUri } from "./env";
+
+setDefaultResultOrder("ipv4first");
 
 export type BlogStatus = "pending" | "approved" | "rejected";
 
@@ -93,7 +96,9 @@ async function getClient() {
     maxPoolSize: 5,
     minPoolSize: 0,
     maxIdleTimeMS: 30_000,
-    serverSelectionTimeoutMS: 10_000,
+    serverSelectionTimeoutMS: 8_000,
+    family: 4,
+    autoSelectFamily: false,
   });
 
   const connecting = client.connect();

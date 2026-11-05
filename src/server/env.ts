@@ -1,7 +1,6 @@
-function readEnv(key: string): string {
-  if (typeof process !== "undefined" && process.env[key]) {
-    return process.env[key] ?? "";
-  }
+function readEnv(key: "MONGODB_URI" | "MONGODB_DB" | "ADMIN_EMAIL" | "ADMIN_PASSWORD"): string {
+  const fromProcess = process.env[key];
+  if (fromProcess) return fromProcess;
   try {
     const value = (import.meta.env as Record<string, string | undefined>)[key];
     return value ?? "";

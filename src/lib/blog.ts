@@ -49,6 +49,10 @@ const postCovers: Record<string, string> = {
   "white-label-experts-platform-without-forking-every-app": "/work/apps/coinzy-1.jpg",
   "firebase-to-bigquery-product-analytics-we-could-trust": "/work/analytics.jpg",
   "java-8-to-17-without-stopping-the-reports": "/companies/affordplan.svg",
+  "from-localhost-to-production-with-nginx": "/linkedin/localhost.jpg",
+  "start-with-a-monolith": "/linkedin/monolith.jpg",
+  "the-bug-is-usually-on-the-boundary": "/linkedin/debug.jpg",
+  "indexes-before-a-bigger-database": "/linkedin/boundary.jpg",
   "what-i-look-for-in-a-code-review-as-a-reader": "/shreyans-coding.png",
   "notes-from-shipping-a-side-project-in-public": "/shreyans-coding.png",
 };
