@@ -2,7 +2,7 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { BlogStats } from "@/components/BlogStats";
 import { UserAvatar } from "@/components/UserAvatar";
 import { WritePostButton } from "@/components/WritePostButton";
-import { formatBlogDate, type BlogCard } from "@/lib/blog";
+import { coverForPost, formatBlogDate, type BlogCard } from "@/lib/blog";
 import { pageHead } from "@/lib/seo";
 import { getBlogIndex } from "@/server/blogs";
 
@@ -67,12 +67,8 @@ function BlogIndex() {
                   params={{ slug: post.slug }}
                   className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card hover:border-primary/60 transition h-full"
                 >
-                  <div className="relative h-40 bg-secondary/40">
-                    {post.coverThumb ? (
-                      <img src={post.coverThumb} alt="" className="h-full w-full object-cover" />
-                    ) : (
-                      <div className="h-full w-full bg-gradient-to-br from-primary/20 to-transparent" />
-                    )}
+                  <div className="relative flex h-52 items-center justify-center bg-white">
+                    <img src={coverForPost(post)} alt="" className="h-52 w-full object-contain object-center p-2" />
                     <span className="absolute left-3 top-3 rounded-full bg-background/85 px-2 py-1 font-mono text-[11px] text-primary">
                       {String(index + 1).padStart(2, "0")}
                     </span>
@@ -107,12 +103,8 @@ function FeaturedPost({ post }: { post: BlogCard }) {
       params={{ slug: post.slug }}
       className="group grid md:grid-cols-[1.15fr_1fr] overflow-hidden rounded-xl border border-border bg-card hover:border-primary/60 transition"
     >
-      <div className="min-h-56 bg-surface">
-        {post.coverThumb ? (
-          <img src={post.coverThumb} alt="" className="h-full w-full object-cover min-h-56 md:min-h-80" />
-        ) : (
-          <div className="h-full min-h-56 md:min-h-80 bg-gradient-to-br from-primary/25 to-secondary" />
-        )}
+      <div className="flex h-72 items-center justify-center bg-white sm:h-96">
+        <img src={coverForPost(post)} alt="" className="h-72 w-full object-contain object-center p-4 sm:h-96" />
       </div>
       <div className="flex flex-col justify-center p-5 sm:p-8 md:p-10">
         <p className="font-mono text-xs uppercase tracking-widest text-primary mb-4">Featured today</p>

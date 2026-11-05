@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ContactForm } from "@/components/ContactForm";
-import { formatBlogDate } from "@/lib/blog";
+import { coverForPost, formatBlogDate } from "@/lib/blog";
 import { PROFILE } from "@/lib/resume";
 import { HOME_DESCRIPTION, pageHead, personJsonLd, siteOrigin } from "@/lib/seo";
 import { getBlogIndex } from "@/server/blogs";
@@ -147,6 +147,7 @@ const linkedinPosts = [
     title: "Monolithic vs microservices",
     excerpt:
       "Don’t choose microservices just because an application needs to scale. Start simple, and add complexity only when it solves a real problem.",
+    image: "/linkedin/monolith.jpg",
     href: "https://www.linkedin.com/posts/shreyans-jain-8396b6245_softwarearchitecture-microservices-monolithicarchitecture-activity-7520738639195111424-7c2k",
   },
   {
@@ -154,14 +155,72 @@ const linkedinPosts = [
     title: "From localhost to production",
     excerpt:
       "A practical deployment setup with a cloud server, Nginx, and a managed Node.js process — simple, secure, and easy to repeat.",
+    image: "/linkedin/localhost.jpg",
     href: "https://www.linkedin.com/posts/shreyans-jain-8396b6245_devops-nginx-digitalocean-activity-7520440552945778688-o91X",
+  },
+  {
+    date: "18 Oct 2026",
+    title: "Degree vs skills",
+    excerpt:
+      "A degree can get you started. The advantage is curiosity, applied knowledge, and the willingness to keep learning.",
+    image: "/linkedin/degree.jpg",
+    href: "https://www.linkedin.com/posts/shreyans-jain-8396b6245_upskilling-careergrowth-technology-activity-7517589724836872192-FCEY",
+  },
+  {
+    date: "16 Oct 2026",
+    title: "Writing code is one skill",
+    excerpt:
+      "Some of the best learning happens after the code already works: why it can fail, and how to make it easier to keep.",
+    image: "/linkedin/cleancode.jpg",
+    href: "https://www.linkedin.com/posts/shreyans-jain-8396b6245_softwareengineering-cleancode-continuouslearning-activity-7516738825533112320-T2jB",
+  },
+  {
+    date: "10 Oct 2026",
+    title: "Market and technology",
+    excerpt:
+      "The useful work sits where full-stack products, mobile apps, and AI meet a real market problem.",
+    image: "/linkedin/impact.jpg",
+    href: "https://www.linkedin.com/posts/shreyans-jain-8396b6245_fullstackdevelopment-artificialintelligence-activity-7514541773164064768-9gPH",
   },
   {
     date: "9 Oct 2026",
     title: "Building beyond code",
     excerpt:
       "Engineering is about solving real problems: interfaces, backend services, and intelligent features that people can actually use.",
+    image: "/linkedin/beyond.jpg",
     href: "https://www.linkedin.com/posts/shreyans-jain-8396b6245_fullstackdevelopment-softwareengineering-activity-7514202294305886208-NcRj",
+  },
+  {
+    date: "8 Oct 2026",
+    title: "ArrayBuffer in React Native",
+    excerpt:
+      "React Native 0.88 can pass ArrayBuffer values straight into TurboModules, with less copying between JavaScript and native code.",
+    image: "/linkedin/rn.jpg",
+    href: "https://www.linkedin.com/posts/shreyans-jain-8396b6245_reactnative-javascript-mobiledevelopment-activity-7513850021973229568-7-ZC",
+  },
+  {
+    date: "8 Oct 2026",
+    title: "Different languages, same goal",
+    excerpt:
+      "Java, Spring Boot, Node.js, React, and Angular are different tools. The job is still one system that holds together.",
+    image: "/linkedin/boundary.jpg",
+    href: "https://www.linkedin.com/posts/shreyans-jain-8396b6245_softwareengineering-fullstackdeveloper-activity-7513844782847164417-tFHj",
+  },
+  {
+    date: "8 Oct 2026",
+    title: "Bugs live on the boundary",
+    excerpt:
+      "A production issue is often a system problem. The hard bugs sit where two systems meet, not on a single wrong line.",
+    image: "/linkedin/debug.jpg",
+    href: "https://www.linkedin.com/posts/shreyans-jain-8396b6245_softwareengineering-engineeringlessons-activity-7513843077514428416-aQ6B",
+  },
+  {
+    date: "26 May 2026",
+    title: "AI plus humans",
+    excerpt:
+      "The shift is not AI versus people. It is people who use AI to frame problems and build better systems.",
+    image: "/linkedin/ai.jpg",
+    href: "https://www.linkedin.com/posts/shreyans-jain-8396b6245_ai-softwareengineering-futureofwork-activity-7465013496963850240-BOfB",
   },
 ];
 
@@ -353,20 +412,23 @@ function Index() {
             All activity
           </a>
         </div>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <div className="-mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 sm:-mx-6 sm:px-6">
           {linkedinPosts.map((post) => (
             <a
               key={post.href}
               href={post.href}
               target="_blank"
               rel="noreferrer"
-              className="group flex flex-col rounded-2xl border border-border bg-card px-5 py-5 hover:border-primary sm:px-6"
+              className="group flex w-[min(82vw,22rem)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-border bg-card hover:border-primary"
             >
-              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-primary">{post.date}</p>
-              <h3 className="mt-3 font-display text-2xl leading-tight text-heading group-hover:text-primary">
-                {post.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
+              <img src={post.image} alt="" className="aspect-[4/3] w-full bg-white object-cover object-top" />
+              <span className="flex flex-1 flex-col px-5 py-5 sm:px-6">
+                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-primary">{post.date}</p>
+                <h3 className="mt-3 font-display text-2xl leading-tight text-heading group-hover:text-primary">
+                  {post.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
+              </span>
             </a>
           ))}
         </div>
@@ -388,12 +450,12 @@ function Index() {
             params={{ slug: blogOfTheDay.slug }}
             className="group mt-8 grid overflow-hidden rounded-[1.4rem] border border-border bg-card md:grid-cols-[1fr_1.1fr]"
           >
-            <span className="flex min-h-56 items-center justify-center bg-surface">
-              {blogOfTheDay.coverThumb ? (
-                <img src={blogOfTheDay.coverThumb} alt="" className="h-full w-full object-contain object-center" />
-              ) : (
-                <img src="/work/banknote.jpg" alt="" className="h-full max-h-80 w-full object-contain object-center" />
-              )}
+            <span className="flex h-72 items-center justify-center bg-white sm:h-96">
+              <img
+                src={coverForPost(blogOfTheDay)}
+                alt=""
+                className="h-72 w-full object-contain object-center sm:h-96"
+              />
             </span>
             <span className="flex flex-col justify-center p-6 sm:p-8">
               <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-primary">

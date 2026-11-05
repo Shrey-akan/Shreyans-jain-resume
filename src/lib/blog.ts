@@ -44,6 +44,19 @@ export const QUERY_TOPICS = [
 
 export type QueryTopic = (typeof QUERY_TOPICS)[number];
 
+const postCovers: Record<string, string> = {
+  "shipping-banknote-ai-one-react-native-codebase": "/work/apps/banknote-1.jpg",
+  "white-label-experts-platform-without-forking-every-app": "/work/apps/coinzy-1.jpg",
+  "firebase-to-bigquery-product-analytics-we-could-trust": "/work/analytics.jpg",
+  "java-8-to-17-without-stopping-the-reports": "/companies/affordplan.svg",
+  "what-i-look-for-in-a-code-review-as-a-reader": "/shreyans-coding.png",
+  "notes-from-shipping-a-side-project-in-public": "/shreyans-coding.png",
+};
+
+export function coverForPost(post: { slug: string; coverThumb?: string | null; coverImage?: string | null }) {
+  return post.coverImage || post.coverThumb || postCovers[post.slug] || "/shreyans-coding.png";
+}
+
 export function slugify(title: string) {
   const base =
     title

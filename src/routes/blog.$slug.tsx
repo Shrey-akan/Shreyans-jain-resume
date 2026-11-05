@@ -4,7 +4,7 @@ import { BlogEngagement } from "@/components/BlogEngagement";
 import { BlogStats } from "@/components/BlogStats";
 import { UserAvatar } from "@/components/UserAvatar";
 import { WritePostButton } from "@/components/WritePostButton";
-import { BlogBody, formatBlogDate, type BlogPost } from "@/lib/blog";
+import { BlogBody, coverForPost, formatBlogDate, type BlogPost } from "@/lib/blog";
 import { pageHead, SEO_KEYWORDS } from "@/lib/seo";
 import { getBlogBySlug, recordBlogView } from "@/server/blogs";
 
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/blog/$slug")({
       path: post ? `/blog/${post.slug}` : "/blog",
       type: "article",
       keywords: post ? `${post.title}, ${SEO_KEYWORDS}` : SEO_KEYWORDS,
-      image: post?.coverThumb || post?.coverImage || "/shreyans-coding.png",
+      image: post ? coverForPost(post) : "/shreyans-coding.png",
     });
   },
   component: BlogPostPage,
@@ -61,13 +61,11 @@ function BlogPostPage() {
         </div>
         <BlogStats likes={post.likesCount} comments={post.commentsCount} views={post.views} />
       </div>
-      {post.coverImage || post.coverThumb ? (
-        <img
-          src={post.coverImage || post.coverThumb || ""}
-          alt=""
-          className="mt-10 w-full rounded-xl border border-border object-cover max-h-[28rem]"
-        />
-      ) : null}
+      <img
+        src={coverForPost(post)}
+        alt=""
+        className="mt-10 h-80 w-full rounded-xl border border-border bg-white object-contain sm:h-[28rem]"
+      />
       <p className="mt-8 text-lg text-muted-foreground leading-relaxed">{post.excerpt}</p>
       <div className="mt-10">
         <BlogBody body={post.body} />
